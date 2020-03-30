@@ -11,6 +11,11 @@ module.exports = {
   entry: {
     bundle: './src/index.js'
   },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
   output: {
     filename: '[name].[hash:8].js',
     path: path.resolve(__dirname, 'dist'),
