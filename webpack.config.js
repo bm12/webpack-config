@@ -13,12 +13,7 @@ const cssLoaders = () => {
   if (isDev) {
     loaders.push('style-loader')
   } else {
-    loaders.push({
-      loader: MiniCssExtractPlugin.loader,
-      options: {
-        hmr: isDev,
-      },
-    });
+    loaders.push(MiniCssExtractPlugin.loader);
   }
 
   loaders.push('css-loader');
