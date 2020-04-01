@@ -3,6 +3,7 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = process.env.NODE_ENV === 'production';
@@ -53,6 +54,7 @@ module.exports = {
       }
     }),
     new MiniCssExtractPlugin(),
+    new webpack.EnvironmentPlugin(['NODE_ENV']),
   ],
   module: {
     rules: [
