@@ -1,4 +1,4 @@
-import { log } from './utils/log';
+import { log } from '@/utils/log';
 import './styles/styles.css';
 import catImg from './assets/cat.jpg';
 

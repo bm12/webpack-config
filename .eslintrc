@@ -1,0 +1,20 @@
+
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended"
+  ],
+  "plugins": [
+    "import"
+  ],
+  "rules": {
+    "no-unused-vars": "warn",
+    "import/no-unresolved": ["error", { "ignore": ["@\/"] }],
+    "comma-dangle": ["warn", "always-multiline"]
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  }
+}

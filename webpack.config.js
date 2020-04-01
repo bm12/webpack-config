@@ -28,14 +28,14 @@ const fileLoader = (folder) => {
     loader: 'file-loader',
     options: {
       name: `assets/${folder}/${filenamePrefix}[contentHash:8].[ext]`,
-    }
+    },
   });
 };
 
 module.exports = {
   mode: isDev ? 'development' : 'production',
   entry: {
-    bundle: './src/index.js'
+    bundle: './src/index.js',
   },
   resolve: {
     alias: {
@@ -61,7 +61,7 @@ module.exports = {
       filename: path.resolve(__dirname, 'dist', 'index.html'),
       minify: {
         collapseWhitespace: isProd,
-      }
+      },
     }),
     new MiniCssExtractPlugin(),
     new webpack.EnvironmentPlugin(['NODE_ENV']),
@@ -69,16 +69,21 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['eslint-loader'],
+      },
+      {
         test: /\.css$/,
         use: cssLoaders(),
       },
       {
         test: /\.(png|jpg|svg|gif)$/,
-        use: [fileLoader('images')]
+        use: [fileLoader('images')],
       },
       {
         test: /\.(ttf|eot|wotf|wotf2)$/,
-        use: [fileLoader('fonts')]
+        use: [fileLoader('fonts')],
       },
     ],
   },
