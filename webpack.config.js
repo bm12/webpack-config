@@ -22,6 +22,16 @@ const cssLoaders = () => {
   return loaders
 };
 
+const fileLoader = (folder) => {
+  const filenamePrefix = isDev ? '[name].' : '';
+  return ({
+    loader: 'file-loader',
+    options: {
+      name: `assets/${folder}/${filenamePrefix}[contentHash:8].[ext]`,
+    }
+  });
+};
+
 module.exports = {
   mode: isDev ? 'development' : 'production',
   entry: {
@@ -64,11 +74,11 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|svg|gif)$/,
-        use: ['file-loader']
+        use: [fileLoader('images')]
       },
       {
         test: /\.(ttf|eot|wotf|wotf2)$/,
-        use: ['file-loader']
+        use: [fileLoader('fonts')]
       },
     ],
   },
