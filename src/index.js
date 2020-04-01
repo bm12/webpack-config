@@ -1,5 +1,5 @@
 import { log } from './utils/log';
-import './styles.css';
+import './styles/styles.css';
 import catImg from './assets/cat.jpg';
 
 log('Hello, world!');
