@@ -49,7 +49,7 @@ module.exports = {
       template: './static/index.html',
       filename: path.resolve(__dirname, 'dist', 'index.html'),
       minify: {
-        collapseWhitespace: true,
+        collapseWhitespace: isProd,
       }
     }),
     new MiniCssExtractPlugin(),
@@ -59,6 +59,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: cssLoaders(),
+      },
+      {
+        test: /\.(png|jpg|svg|gif)$/,
+        use: ['file-loader']
       },
     ],
   },
