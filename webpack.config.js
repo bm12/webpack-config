@@ -22,6 +22,8 @@ const cssLoaders = () => {
   return loaders
 };
 
+const getFilename = ext => `[name].[contentHash:8].${ext}`;
+
 const fileLoader = (folder) => {
   const filenamePrefix = isDev ? '[name].' : '';
   return ({
@@ -43,7 +45,7 @@ module.exports = {
     },
   },
   output: {
-    filename: '[name].[hash:8].js',
+    filename: getFilename('js'),
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
   },
@@ -63,7 +65,9 @@ module.exports = {
         collapseWhitespace: isProd,
       },
     }),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: getFilename('css'),
+    }),
     new webpack.EnvironmentPlugin(['NODE_ENV']),
   ],
   module: {
