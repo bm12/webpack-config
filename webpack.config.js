@@ -22,7 +22,7 @@ const cssLoaders = () => {
   return loaders
 };
 
-const getFilename = ext => `[name].[contentHash:8].${ext}`;
+const getFilename = ext => `[name].[hash:8].${ext}`;
 
 const fileLoader = (folder) => {
   const filenamePrefix = isDev ? '[name].' : '';
