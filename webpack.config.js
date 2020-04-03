@@ -17,7 +17,16 @@ const cssLoaders = () => {
     loaders.push(MiniCssExtractPlugin.loader);
   }
 
-  loaders.push('css-loader');
+  loaders.push({
+    loader: 'css-loader',
+    options: {
+      modules: {
+        localIdentName: `${isDev ? '[folder]_[local]_' : ''}[hash:base64:6]`,
+      },
+      importLoaders: 1,
+    },
+  });
+  loaders.push('postcss-loader');
 
   return loaders
 };
@@ -78,7 +87,7 @@ module.exports = {
         use: ['eslint-loader'],
       },
       {
-        test: /\.css$/,
+        test: /\.p?css$/,
         use: cssLoaders(),
       },
       {
