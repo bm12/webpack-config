@@ -11,11 +11,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const cssLoaders = () => {
   const loaders = [];
 
-  if (isDev) {
-    loaders.push('style-loader')
-  } else {
-    loaders.push(MiniCssExtractPlugin.loader);
-  }
+  loaders.push(isDev ? 'style-loader' : MiniCssExtractPlugin.loader);
 
   loaders.push({
     loader: 'css-loader',
@@ -84,7 +80,15 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ['eslint-loader'],
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            },
+          },
+          'eslint-loader',
+        ],
       },
       {
         test: /\.p?css$/,
