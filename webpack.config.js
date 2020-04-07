@@ -3,6 +3,7 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const webpack = require('webpack');
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -74,6 +75,12 @@ module.exports = {
       filename: getFilename('css'),
     }),
     new webpack.EnvironmentPlugin(['NODE_ENV']),
+    new BundleAnalyzerPlugin({
+      analyzerMode: isProd ? 'static' : 'disabled',
+      openAnalyzer: false,
+      defaultSizes: 'gzip',
+      reportFilename: 'webpack-bundle-analyzer-report.html',
+    }),
   ],
   module: {
     rules: [
