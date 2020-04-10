@@ -1,16 +1,25 @@
 
 {
   "parser": "babel-eslint",
-  "extends": [
-    "eslint:recommended"
-  ],
+  "extends": "airbnb",
   "plugins": [
-    "import"
+    "react-hooks"
   ],
   "rules": {
     "no-unused-vars": "warn",
     "import/no-unresolved": ["error", { "ignore": ["@\/"] }],
-    "comma-dangle": ["warn", "always-multiline"]
+    "import/newline-after-import": "off",
+    "comma-dangle": ["warn", "always-multiline"],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-one-expression-per-line": "off",
+    "react/prop-types": "warn",
+    "import/prefer-default-export": "off",
+    "import/order": "off",
+    "react/destructuring-assignment": "warn",
+    "arrow-parens": ["warn", "as-needed", { "requireForBlockBody": true }],
+    "arrow-body-style": "warn",
+    "semi": "warn"
   },
   "env": {
     "es6": true,

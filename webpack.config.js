@@ -25,7 +25,7 @@ const cssLoaders = () => {
   });
   loaders.push('postcss-loader');
 
-  return loaders
+  return loaders;
 };
 
 const getFilename = ext => `[name].[hash:8].${ext}`;
@@ -43,12 +43,13 @@ const fileLoader = (folder) => {
 module.exports = {
   mode: isDev ? 'development' : 'production',
   entry: {
-    bundle: './src/index.js',
+    bundle: './src/index.jsx',
   },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
+    extensions: ['.js', '.json', '.jsx'],
   },
   output: {
     filename: getFilename('js'),
@@ -85,7 +86,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: [
           {
@@ -94,7 +95,12 @@ module.exports = {
               cacheDirectory: true,
             },
           },
-          'eslint-loader',
+          {
+            loader: 'eslint-loader',
+            options: {
+              cache: true,
+            },
+          },
         ],
       },
       {
