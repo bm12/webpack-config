@@ -6,7 +6,6 @@
     "react-hooks"
   ],
   "rules": {
-    "arrow-parens": ["warn", "as-needed", { "requireForBlockBody": true }],
     "arrow-body-style": "warn",
     "semi": "warn",
     "no-unused-vars": "warn",
