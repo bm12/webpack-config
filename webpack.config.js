@@ -28,6 +28,11 @@ const cssLoaders = () => {
   return loaders;
 };
 
+const sassLoader = () => [
+  ...cssLoaders(),
+  'sass-loader',
+];
+
 const getFilename = ext => `[name].[hash:8].${ext}`;
 
 const fileLoader = (folder) => {
@@ -106,6 +111,10 @@ module.exports = {
       {
         test: /\.p?css$/,
         use: cssLoaders(),
+      },
+      {
+        test: /\.s(a|c)ss$/,
+        use: sassLoader(),
       },
       {
         test: /\.(png|jpg|svg|gif)$/,
