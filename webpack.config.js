@@ -9,7 +9,7 @@ const webpack = require('webpack');
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = process.env.NODE_ENV === 'production';
 
-const cssLoaders = () => {
+const cssLoaders = ({ isModules = true } = {}) => {
   const loaders = [];
 
   loaders.push(isDev ? 'style-loader' : MiniCssExtractPlugin.loader);
@@ -17,9 +17,9 @@ const cssLoaders = () => {
   loaders.push({
     loader: 'css-loader',
     options: {
-      modules: {
+      modules: isModules && ({
         localIdentName: `${isDev ? '[folder]_[local]_' : ''}[hash:base64:6]`,
-      },
+      }),
       importLoaders: 1,
     },
   });
@@ -109,7 +109,12 @@ module.exports = {
         ],
       },
       {
+        test: /\.global\.p?css$/,
+        use: cssLoaders({ isModules: false }),
+      },
+      {
         test: /\.p?css$/,
+        exclude: /\.global\.p?css$/,
         use: cssLoaders(),
       },
       {

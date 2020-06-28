@@ -6,7 +6,7 @@ import { sleep } from './utils/sleep';
 import App from '@/components/App';
 
 import catImg from './assets/cat.jpg';
-import './styles/styles.css';
+import './styles/styles.global.css';
 
 log('Hello, world!');
 log(catImg);
